@@ -1,0 +1,94 @@
+.car-swiper-button-prev
+  left: 0 !important
+.car-swiper-button-next
+  right: 0 !important
+.car-item
+  padding: 0 30px
+  img
+    width: 240px
+    height: 250px
+    border-radius: 5px
+    object-fit: cover
+    margin-bottom: 10px
+    cursor: pointer
+  &__group
+    @extend .flex-j-sb
+    margin-bottom: 10px
+  &__name
+    min-height: 60px
+
+.cars-wrapper
+  display: grid
+  grid-template-columns: repeat(auto-fill,minmax(230px, 1fr))
+  grid-gap: 50px
+  & .car-item
+    padding: 0
+
+.car
+  &-wrapper
+    display: grid
+    grid-template-columns: 1fr 1fr
+    grid-gap: 70px
+  &-images
+    display: grid
+    grid-template-columns: 3fr 1fr
+    grid-gap: 15px
+    &__big
+      background-position: center !important
+      background-repeat: no-repeat !important
+      background-size: cover !important
+      border-radius: 5px
+      height: 460px
+      width: 100%
+    &__small
+      display: flex
+      flex-direction: column
+      justify-content: flex-start
+      align-items: center
+      height: 460px
+      img
+        cursor: pointer
+        width: 145px
+        height: 145px
+        border-radius: 5px
+        object-fit: cover
+        margin-bottom: 15px
+        &:last-child
+          margin-bottom: 0
+  &-info
+    &__text
+      margin-bottom: 30px
+      p
+        margin-bottom: 15px
+        &:last-child
+          margin-bottom: 0
+    &__title
+      font-size: 20px
+      font-weight: 600
+      margin-bottom: 25px
+    &__features
+      display: grid
+      grid-template-columns: repeat(auto-fill,minmax(110px, 1fr))
+      grid-column-gap: 50px
+      grid-row-gap: 30px
+      margin-bottom: 50px
+      &--item
+        display: flex
+        align-items: center
+        justify-content: flex-start
+        img
+          width: 40px
+          height: auto
+          object-fit: cover
+          margin-right: 15px
+    &__price
+      display: flex
+      align-items: center
+      justify-content: flex-start
+      margin-bottom: 10px
+      p
+        font-weight: 600
+        margin-right: 40px
+        &:last-child
+          margin-right: 0
+

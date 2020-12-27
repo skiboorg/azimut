@@ -1,0 +1,41 @@
+.services
+  display: grid
+  grid-template-columns: repeat(auto-fill,minmax(250px, 1fr))
+  grid-gap: 20px
+  margin-bottom: 40px
+  &-item
+    cursor: pointer
+    img
+      width: 280px
+      height: 250px
+      object-fit: cover
+      margin-bottom: 10px
+    p
+      font-weight: 400
+
+.service
+  &-wrapper
+    display: grid
+    grid-template-columns: 1fr 3fr
+    grid-gap: 70px
+    margin-bottom: 40px
+  &-left
+  &-right
+  &-item
+    background: #FFFFFF
+    box-shadow: 7px 11px 73px rgba(0, 63, 121, 0.15)
+    border-radius: 5px
+    padding: 10px
+    margin-bottom: 10px
+    cursor: pointer
+    p
+      color: $primary-color
+      font-weight: 600
+    &:hover
+      box-shadow: none
+    &:active
+      box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.13)
+    &:focus
+      box-shadow: inset 0px 2px 5px rgba(0, 0, 0, 0.13)
+
+

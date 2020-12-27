@@ -1,0 +1,170 @@
+$text-color: #272727
+$primary-color: #00BE91
+
+html
+  &:root
+    --swiper-theme-color: #00BE91
+
+body
+  font-family: 'Inter', sans-serif
+  color: $text-color
+
+a
+  color: inherit
+
+section
+  margin-bottom: 150px
+.text-center
+  text-align: center
+
+.text-left
+  text-align: left !important
+
+.text-bold
+  font-weight: 700
+.flex-block
+  display: flex
+  align-items: center
+.mb-10
+  margin-bottom: 10px !important
+.mb-40
+  margin-bottom: 40px !important
+
+.flex-j-sb
+  @extend .flex-block
+  justify-content: space-between
+
+.flex-j-c
+  @extend .flex-block
+  justify-content: center
+
+.container
+  max-width: 1200px
+  padding: 0 10px
+  margin: 0 auto
+
+.page-container
+  padding-top: 60px
+  & .section-title
+    margin-bottom: 90px
+  p
+    margin-bottom: 15px
+
+
+.section-title
+  font-weight: 700
+  font-size: 34px
+  text-align: center
+  margin-bottom: 50px
+
+.el-checkbox__inner
+  border-color: $primary-color
+  &:hover
+    border-color: $primary-color
+
+.el-checkbox__input.is-checked .el-checkbox__inner, .el-checkbox__input.is-indeterminate .el-checkbox__inner
+  background-color: $primary-color
+  border-color: $primary-color
+
+.el-checkbox__input.is-checked+.el-checkbox__label
+  color: $primary-color
+
+.el-collapse
+  border-bottom: none
+  border-top: none
+  margin-bottom: 15px
+  box-shadow: 7px 11px 73px rgba(0, 63, 121, 0.15)
+  border-radius: 5px
+  background: #FFFFFF
+  flex-basis: 49%
+  &-item
+    padding: 15px
+    &__arrow
+      color: $primary-color
+    &__header
+      border-bottom: none
+      font-size: 20px
+      font-weight: 600
+    &__wrap
+      border-bottom: none
+
+.el-input__inner
+  border: 1px solid transparent
+  background-color: #E3F2EF
+  color: #61958B
+  &::placeholder
+    color: #61958B
+  &:hover
+    border: 1px solid #CAE3DE
+  &:focus
+    border: 1px solid #CAE3DE
+.el-textarea__inner
+  border: 1px solid transparent
+  background-color: #E3F2EF
+  color: #61958B
+  &::placeholder
+    color: #61958B
+  &:hover
+    border: 1px solid #CAE3DE
+  &:focus
+    border: 1px solid #CAE3DE
+
+.el-button
+  border: 1px solid $primary-color
+  font-weight: 600
+  &.is-plain
+    border: 1px solid $primary-color
+    background: transparent
+    color: $primary-color
+
+.el-button--primary
+  border: 1px solid $primary-color
+  background:  linear-gradient(90deg, #00BE91 0%, #00B091 100%)
+  &:hover
+    border: 1px solid $primary-color
+    background: linear-gradient(90deg, #00B191 0%, #00BE91 100%)
+  &:active
+    border: 1px solid $primary-color
+    background: linear-gradient(90deg, #009F83 0%, #00BE91 100%)
+  &:focus
+    border: 1px solid $primary-color
+    background: linear-gradient(90deg, #009F83 0%, #00BE91 100%)
+  &.is-plain
+    &:hover
+      border-color: $primary-color
+      background: linear-gradient(90deg, #00B191 0%, #00BE91 100%)
+    &:focus
+      border-color: $primary-color
+      background: linear-gradient(90deg, #009F83 0%, #00BE91 100%)
+
+
+
+
+.faq-wrapper
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+  flex-wrap: wrap
+
+.contact-map
+  position: relative
+  margin-bottom: 40px
+  &__inner
+    position: absolute
+    background: #FEFEFE
+    box-shadow: 0px 26px 50px rgba(0, 63, 121, 0.14)
+    border-radius: 5px
+    padding: 45px 30px
+    left: 115px
+    top: 115px
+  &__item
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    margin-bottom: 30px
+    svg
+      margin-right: 15px
+    p
+      margin-bottom: 0 !important
+    &:last-child
+      margin-bottom: 0
