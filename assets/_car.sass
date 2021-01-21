@@ -92,3 +92,24 @@
         &:last-child
           margin-right: 0
 
+@media (max-width: 600px)
+  .car
+    &-wrapper
+      grid-template-columns: 1fr
+      grid-gap: 20px
+    &-images
+      grid-template-columns: 1fr
+      &__small
+        height: fit-content
+        display: grid
+        grid-template-columns: repeat(auto-fill,minmax(90px, 1fr))
+        grid-gap: 10px
+    &-info
+      .el-button
+        width: 100%
+      &__features
+        grid-row-gap: 10px
+        margin-bottom: 20px
+      &__price
+        margin-bottom: 30px
+

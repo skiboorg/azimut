@@ -168,3 +168,37 @@ section
       margin-bottom: 0 !important
     &:last-child
       margin-bottom: 0
+.modal
+  &-title
+    font-size: 20px
+    text-align: center
+    font-weight: 600
+    word-break: break-word
+    color: #262626
+    margin-bottom: 20px
+  & .el-dialog
+    width: 320px
+    text-align: center
+  .el-dialog__headerbtn:hover .el-dialog__close
+      color: $primary-color
+  .el-input
+    margin-bottom: 10px
+  .el-textarea
+    margin-bottom: 20px
+  .el-checkbox
+    display: flex
+    align-items: flex-start
+
+@media (max-width: 890px)
+  section
+    margin-bottom: 80px
+
+@media (max-width: 600px)
+  section
+    margin-bottom: 40px
+  .page-container
+    padding-top: 20px
+    .section-title
+      margin-bottom: 20px
+  .mb-40
+    margin-bottom: 20px

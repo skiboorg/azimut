@@ -27,17 +27,17 @@
     <section>
       <div class="container">
         <h3 class="section-title">Наши услуги</h3>
-        <div class="services">
+        <div class="services services-desktop">
           <div @click="$router.push(`/services/${service.name_slug}`)" class="services-item" v-for="service in services" :key="service.id">
-            <img :src="service.img" alt="">
+            <img :src="service.image" alt="">
             <p>{{service.name}}</p>
           </div>
         </div>
         <client-only>
-          <swiper style="display: none" class="banner_wrapper"  :options="swiperOption">
-            <swiper-slide  v-for="service in services" :key="service.id">
+          <swiper  class="banner_wrapper services-mobile"  :options="swiperOption">
+            <swiper-slide v-if="service.show_at_index" v-for="service in services" :key="service.id">
               <div class="services-item">
-                <img :src="service.img" alt="">
+                <img :src="service.image" alt="">
                 <p>{{service.name}}</p>
               </div>
             </swiper-slide>
@@ -65,7 +65,10 @@
           </swiper>
         </client-only>
         <div class="text-center">
-          <el-button type="primary">Все услуги</el-button>
+          <nuxt-link to="/services">
+            <el-button type="primary">Все услуги</el-button>
+          </nuxt-link>
+
         </div>
       </div>
     </section>
@@ -75,23 +78,7 @@
          <client-only>
           <swiper class="cars_wrapper"  :options="carSwiperOption">
             <swiper-slide  v-for="car in cars" :key="car.id">
-              <div @click="$router.push(`/cars/${car.category}/${car.name_slug}`)" class="car-item">
-                <img :src="car.img" alt="">
-                <p class="car-item__name">{{car.name}}</p>
-                <div class="car-item__group">
-                  <p>{{car.time}}</p>
-                  <p>{{car.places}}</p>
-                </div>
-                <div class="car-item__group">
-                  <p class="text-bold">{{car.price_per_km}}р/км</p>
-                  <p class="text-bold">{{car.price_per_hour}}р/час</p>
-                </div>
-                <div class="car-item__group">
-                  <el-button type="primary">Заказать</el-button>
-                  <el-button plain type="primary">Подробнее</el-button>
-
-                </div>
-              </div>
+              <CarCard :car="car"/>
             </swiper-slide>
             <div class="car-swiper-button-prev swiper-button-prev" slot="button-prev"><svg width="26" height="14" viewBox="0 0 26 14" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M0.297882 6.28114C0.298187 6.28084 0.298441 6.28048 0.298798 6.28018L5.60564 0.998932C6.00321 0.603296 6.64625 0.604768 7.04199 1.00239C7.43768 1.39995 7.43615 2.04299 7.03859 2.43868L3.47557 5.98443H24.9844C25.5453 5.98443 26 6.43912 26 7.00005C26 7.56098 25.5453 8.01567 24.9844 8.01567H3.47562L7.03854 11.5614C7.4361 11.9571 7.43762 12.6001 7.04194 12.9977C6.6462 13.3954 6.00311 13.3968 5.60559 13.0012L0.298746 7.71992C0.298441 7.71962 0.298187 7.71926 0.297832 7.71896C-0.0999374 7.32195 -0.0986691 6.67683 0.297882 6.28114Z" fill="url(#paint0_linear)"/>
@@ -118,21 +105,21 @@
         </client-only>
       </div>
     </section>
-    <section>
+    <section class="cb">
       <h3 class="section-title">Оставьте заявку на услугу</h3>
       <div class="callback-form">
         <div class="callback-form__inner">
-           <el-input v-model="input" placeholder="Ваше имя"></el-input>
-        <el-input v-model="input" placeholder="Ваш номер телефона"></el-input>
-        <el-select v-model="model" placeholder="placeholder">
+           <el-input v-model="name" placeholder="Ваше имя"></el-input>
+        <el-input v-model="phone" placeholder="Ваш номер телефона"></el-input>
+        <el-select v-model="service" placeholder="Вид услуги">
           <el-option
-            v-for="item in optionsList"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
+            v-for="item in services"
+            :key="item.id"
+            :label="item.name"
+            :value="item.id">
           </el-option>
         </el-select>
-        <el-input type="textarea" rows="5" resize="none" v-model="input" placeholder="placeholder"></el-input>
+        <el-input type="textarea" rows="5" resize="none" v-model="input" placeholder="Текст сообщения"></el-input>
           <el-button type="primary">Оставить заявку</el-button>
 
         </div>
@@ -153,13 +140,41 @@
 </template>
 
 <script>
+ import CarCard from '@/components/CarCard';
+
   export default {
+    components:{
+            CarCard
+
+        },
+    async asyncData({$axios}){
+
+    try{
+      //const get_banners = await $axios.get(`/api/get_streamers`)
+      const get_services = await $axios.get(`/api/get_services`)
+      const get_cars = await $axios.get(`/api/get_index_cars`)
+
+      //const banners = get_streamers.data
+      const services = get_services.data
+      const cars = get_cars.data
+      console.log(cars)
+      return {services,cars}//,banners
+    }catch (e) {
+      const err = 404
+      return {err}
+    }
+  },
     data:function(){
       return{
+        name:null,
+        phone:null,
+        service:null,
         swiperOption: {
           slidesPerView: 1,
           //spaceBetween: 20,
-          //centeredSlides: true,
+          centeredSlides: true,
+
+
           autoplay:true,
           pagination: {
             el: '.swiper-pagination',
@@ -189,32 +204,37 @@
           // }
         },
         carSwiperOption: {
-          slidesPerView: 4,
+          //slidesPerView: 4,
           spaceBetween: 0,
           //centeredSlides: true,
 
           navigation: {
             nextEl: '.car-swiper-button-next',
             prevEl: '.car-swiper-button-prev'
+          },
+          breakpoints: {
+            // when window width is >= 320px
+            320: {
+              centeredSlides: true,
+              slidesPerView: 1,
+              spaceBetween: 20
+            },
+            // when window width is >= 480px
+            480: {
+              centeredSlides:true,
+              slidesPerView: 1,
+              spaceBetween: 30
+            },
+            // when window width is >= 640px
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 0
+            },
+             890: {
+              slidesPerView: 4,
+              spaceBetween: 0
+            }
           }
-          // breakpoints: {
-          //   // when window width is >= 320px
-          //   320: {
-          //     centeredSlides: true,
-          //     slidesPerView: 1,
-          //     spaceBetween: 20
-          //   },
-          //   // when window width is >= 480px
-          //   480: {
-          //     slidesPerView: 1,
-          //     spaceBetween: 30
-          //   },
-          //   // when window width is >= 640px
-          //   640: {
-          //     slidesPerView: 5,
-          //     spaceBetween: 40
-          //   }
-          // }
         },
         banners:[
           {id:1,bg_color:'linear-gradient(90deg, #00BE91 0%, #00B091 100%)',text:'Аренда автомобилей. Аутсорсинг и аутстаффинг водителей',img:'/banner1.png'},
@@ -357,19 +377,8 @@
               '</defs>\n' +
               '</svg>\n'},
         ],
-       services:[
-          {id:1,img:'http://placehold.it/300',name_slug:'123',name:'Аутсорсинг и аутстаффинг водителей'},
-          {id:2,img:'http://placehold.it/300',name_slug:'123',name:'Аренда автомобилей для деловых встреч и мероприятий'},
-          {id:3,img:'http://placehold.it/300',name_slug:'123',name:'Трансфер в аэропорт и на железнодорожный вокзал'},
-          {id:4,img:'http://placehold.it/300',name_slug:'123',name:'Аутсорсинг и аутстаффинг водителей'},
-        ],
-         cars:[
-          {id:1,img:'http://placehold.it/300',category:'123',name_slug:'sdfdsf',name:'Микроавтобус Ситроен',time:'от 3 часов',places:'17 мест',price_per_km:'1000',price_per_hour:'1000'},
-          {id:2,img:'http://placehold.it/300',category:'123',name_slug:'sdfdsf',name:'Микроавтобус Ситроен',time:'от 3 часов',places:'17 мест',price_per_km:'7000',price_per_hour:'7000'},
-          {id:3,img:'http://placehold.it/300',category:'123',name_slug:'sdfdsf',name:'Микроghjhgjhgjhgjhgjавтобус Ситроен',time:'от 3 часов',places:'17 мест',price_per_km:'1000',price_per_hour:'1000'},
-          {id:4,img:'http://placehold.it/300',category:'123',name_slug:'sdfdsf',name:'Микроавтобус Ситроен',time:'от 3 часов',places:'17 мест',price_per_km:'1000',price_per_hour:'1000'},
-          {id:5,img:'http://placehold.it/300',category:'123',name_slug:'sdfdsf',name:'Микроавтобус Ситроен',time:'от 3 часов',places:'17 мест',price_per_km:'1000',price_per_hour:'1000'}
-        ],
+
+
         customers:[
           {id:1,img:'http://placehold.it/300'},
           {id:2,img:'http://placehold.it/300'},

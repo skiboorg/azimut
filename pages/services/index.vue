@@ -14,7 +14,7 @@
         <p class="mb-40">Специализируясь на пассажирских перевозках в одном из крупнейших городов России – Челябинске, Группа Компаний «Экспресс» зарекомендовала себя как надежный партнер, сотрудничать с которым выгодно и комфортно. Наша команда работает на благо жителей Челябинской области уже свыше 9 лет, что позволило стать примером качественного сервиса, как в сфере пассажирских перевозок, так и в сфере аренды автобусов различной вместимости.</p>
         <div class="services">
           <div @click="$router.push(`/services/${service.name_slug}`)"  class="services-item" v-for="service in services" :key="service.id">
-            <img :src="service.img" alt="">
+            <img :src="service.image" alt="">
             <p>{{service.name}}</p>
           </div>
         </div>
@@ -29,15 +29,19 @@
 
 <script>
   export default {
+     async asyncData({$axios}){
+
+    try{
+      const get_services = await $axios.get(`/api/get_services`)
+      const services = get_services.data
+      return {services}//,banners
+    }catch (e) {
+      const err = 404
+      return {err}
+    }
+  },
     data:function(){
       return{
-
-        services:[
-          {id:1,img:'http://placehold.it/300',name_slug:'123',name:'Аутсорсинг и аутстаффинг водителей'},
-          {id:2,img:'http://placehold.it/300',name_slug:'123',name:'Аренда автомобилей для деловых встреч и мероприятий'},
-          {id:3,img:'http://placehold.it/300',name_slug:'123',name:'Трансфер в аэропорт и на железнодорожный вокзал'},
-          {id:4,img:'http://placehold.it/300',name_slug:'123',name:'Аутсорсинг и аутстаффинг водителей'},
-        ],
 
 
       }

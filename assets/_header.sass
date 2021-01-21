@@ -1,5 +1,7 @@
 .header
   padding: 35px 0
+  &-mobile
+    display: none
   &-top
     @extend .flex-j-sb
     &__logo
@@ -54,3 +56,15 @@
     bottom: 0
     left: 0
     transition: all .1s linear
+
+@media (max-width: 890px)
+  .header
+    padding: 10px 0
+    &-top
+      display: none
+    &-nav
+      display: none
+    &-mobile
+      display: flex
+      align-items: center
+      justify-content: space-between

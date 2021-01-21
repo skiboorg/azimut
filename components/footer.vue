@@ -3,15 +3,15 @@
    <div class="container">
      <div class="footer-wrapper">
        <div class="footer-row">
-         <nuxt-link to="/">
+
            <img src="http://placehold.it/300" alt="">
-         </nuxt-link>
+
          <p>Челябинск,<br>ул. Косарева, д. 75</p>
          <p>с 9:00 до 22:00</p>
          <p><a href="tel:+73512251065">+7 (351) 225-10-65</a></p>
          <p><a href="tel:+7 (982) 363-03-03">+7 (982) 363-03-03</a></p>
          <p><a href="mailto:avto@gcexpress.ru">avto@gcexpress.ru</a></p>
-         <el-button type="primary">Заказать звонок</el-button>
+         <el-button id="callbackModal" @click="dialogVisible=true" type="primary">Заказать звонок</el-button>
        </div>
        <div class="footer-row">
          <ul>
@@ -25,7 +25,7 @@
          </ul>
        </div>
        <div class="footer-row">
-          <ul style="columns: auto 2; width: 80%;">
+          <ul class="footer-row-colums">
             <li><nuxt-link to="/1">Автобусы</nuxt-link></li>
             <li><nuxt-link to="/1">Обслуживание спортивных мероприятий</nuxt-link></li>
             <li><nuxt-link to="/1">Автобусы</nuxt-link></li>
@@ -38,7 +38,15 @@
      </div>
    </div>
 
+      <el-dialog class="modal" :visible.sync="dialogVisible" >
+        <p class="modal-title">Укажите свой номер телефона и мы вам перезвоним</p>
+        <el-input v-model="phone" placeholder="Ваш номер телефона"></el-input>
+        <el-input ref="ttt" style="display: none" id="carID" v-model="car_id" value="123" placeholder="Ваш номер телефона"></el-input>
 
+          <el-button style="width: 100%;margin-bottom: 20px" type="primary">Оставить заявку</el-button>
+      <el-checkbox v-model="agree">Даю согласие на обработку<br> персональных данных</el-checkbox>
+
+</el-dialog>
 
 
   </footer>
@@ -46,6 +54,14 @@
 
 <script>
   export default {
+  data() {
+      return {
+        dialogVisible:false,
+        agree:false,
+        phone:null,
+        car_id:null,
 
+      }
+    },
   };
 </script>

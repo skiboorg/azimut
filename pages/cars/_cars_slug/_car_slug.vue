@@ -5,7 +5,7 @@
         <el-breadcrumb separator="/">
           <el-breadcrumb-item :to="{ path: '/' }">Главная</el-breadcrumb-item>
           <el-breadcrumb-item :to="{ path: '/cars' }">Автопарк</el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: '/cars/sdf' }">Микроавтобусы</el-breadcrumb-item>
+          <el-breadcrumb-item :to="{ path: `/cars/${car.cat_slug}` }">{{car.cat_name}}</el-breadcrumb-item>
           <el-breadcrumb-item>{{car.name}}</el-breadcrumb-item>
         </el-breadcrumb>
       </div>
@@ -16,25 +16,25 @@
             <div class="car-images__big" :style="'background: url(' + currentImage + ')'">
             </div>
             <div class="car-images__small">
-              <img @click="currentImage = image.image" v-if="!image.is_main_img"
+              <img @click="currentImage = image.image"
                    :src="image.image" alt="" v-for="image in car.images" :key="image.id">
 
             </div>
           </div>
           <div class="car-info">
-            <div class="car-info__text"><p v-html="car.info"></p></div>
+            <div class="car-info__text"><p v-html="car.description"></p></div>
             <p class="car-info__title">Доступные функции</p>
             <div class="car-info__features">
-              <div class="car-info__features--item" v-for="feature in car.features" :key="feature.id">
+              <div class="car-info__features--item" v-for="feature in car.option" :key="feature.id">
                 <img :src="feature.image" alt="">
                 <p>{{feature.name}}</p>
               </div>
             </div>
             <div class="car-info__price">
-              <p>от {{car.price_per_km}}р/км</p>
-              <p>от {{car.price_per_hour}}р/час</p>
+              <p v-if="car.price_km">от {{car.price_km}}р/км</p>
+              <p v-if="car.price_hour">от {{car.price_hour}}р/час</p>
             </div>
-            <el-button type="primary">Заказать авто</el-button>
+            <el-button @click="car_id=car.id,dialogVisible=true" type="primary">Заказать авто</el-button>
           </div>
         </div>
 
@@ -44,38 +44,58 @@
       <div class="container">
         <h3 class="section-title">Вас также могут заинтересовать</h3>
         <div class="cars-wrapper">
-          <div @click="$router.push(`/cars/${car.category}/${car.name_slug}`)"
-               class="car-item" v-for="car in cars" :key="car.id">
-            <img :src="car.img" alt="">
-            <p class="car-item__name">{{car.name}}</p>
-            <div class="car-item__group">
-              <p>{{car.time}}</p>
-              <p>{{car.places}}</p>
-            </div>
-            <div class="car-item__group">
-              <p class="text-bold">{{car.price_per_km}}р/км</p>
-              <p class="text-bold">{{car.price_per_hour}}р/час</p>
-            </div>
-            <div class="car-item__group">
-              <el-button type="primary">Заказать</el-button>
-              <el-button plain type="primary">Подробнее</el-button>
+<!--          <div @click="$router.push(`/cars/${car.category}/${car.name_slug}`)"-->
+<!--               class="car-item" v-for="car in cars" :key="car.id">-->
+<!--            <img :src="car.img" alt="">-->
+<!--            <p class="car-item__name">{{car.name}}</p>-->
+<!--            <div class="car-item__group">-->
+<!--              <p>{{car.time}}</p>-->
+<!--              <p>{{car.places}}</p>-->
+<!--            </div>-->
+<!--            <div class="car-item__group">-->
+<!--              <p class="text-bold">{{car.price_per_km}}р/км</p>-->
+<!--              <p class="text-bold">{{car.price_per_hour}}р/час</p>-->
+<!--            </div>-->
+<!--            <div class="car-item__group">-->
+<!--              <el-button type="primary">Заказать</el-button>-->
+<!--              <el-button plain type="primary">Подробнее</el-button>-->
 
-            </div>
-          </div>
+<!--            </div>-->
+<!--          </div>-->
 
         </div>
       </div>
 
     </section>
+    <el-dialog class="modal" :visible.sync="dialogVisible" >
+        <p class="modal-title">Укажите свой номер телефона и мы вам перезвоним</p>
+        <el-input v-model="phone" placeholder="Ваш номер телефона"></el-input>
 
+          <el-button style="width: 100%;margin-bottom: 20px" type="primary">Оставить заявку</el-button>
+      <el-checkbox v-model="agree">Даю согласие на обработку<br> персональных данных</el-checkbox>
+
+</el-dialog>
   </div>
 
 </template>
 
 <script>
   export default {
+ async asyncData({$axios,params}){
+
+      console.log(params)
+      const get_car= await $axios.get(`/api/get_car?name_slug=${params.car_slug}`)
+      const car = get_car.data
+      console.log(car)
+      return {car}//,banners
+
+  },
     data:function(){
       return{
+        dialogVisible:false,
+        agree:false,
+        phone:null,
+        car_id:null,
         currentImage:null,
         car:{
           id:1,
@@ -112,7 +132,7 @@
       }
     },
     mounted() {
-      this.currentImage = this.car.images.filter(x => x.is_main_img)[0].image
+      this.currentImage = this.car.images[0].image
     }
   }
 </script>

@@ -12,10 +12,10 @@
       <div class="container page-container">
         <h1 class="section-title">Автопарк</h1>
         <p class="mb-40">Специализируясь на пассажирских перевозках в одном из крупнейших городов России – Челябинске, Группа Компаний «Экспресс» зарекомендовала себя как надежный партнер, сотрудничать с которым выгодно и комфортно. Наша команда работает на благо жителей Челябинской области уже свыше 9 лет, что позволило стать примером качественного сервиса, как в сфере пассажирских перевозок, так и в сфере аренды автобусов различной вместимости.</p>
-        <div class="services">
-          <div @click="$router.push(`/cars/${car.name_slug}`)"  class="services-item" v-for="car in cars" :key="car.id">
-            <img :src="car.img" alt="">
-            <p>{{car.name}}</p>
+        <div class="categories ">
+          <div @click="$router.push(`/cars/${cat.name_slug}`)"  class="services-item" v-for="cat in categories" :key="cat.id">
+            <img :src="cat.image" alt="">
+            <p>{{cat.name}}</p>
           </div>
         </div>
         <div class="text-center"><el-button type="primary">Заказать авто</el-button></div>
@@ -29,6 +29,18 @@
 
 <script>
   export default {
+    async asyncData({$axios}){
+
+    try{
+      const get_categories = await $axios.get(`/api/get_categories`)
+      const categories = get_categories.data
+      console.log(categories)
+      return {categories}//,banners
+    }catch (e) {
+      const err = 404
+      return {err}
+    }
+  },
     data:function(){
       return{
 
