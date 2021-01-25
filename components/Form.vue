@@ -23,19 +23,9 @@
 
 <script>
   export default {
-     async asyncData({$axios}){
-
-    try{
-      const get_services = await $axios.get(`/api/get_services`)
-      const services = get_services.data
-      return {services}//,banners
-    }catch (e) {
-      const err = 404
-      return {err}
-    }
-  },
   data() {
       return {
+        services:null,
         dialogVisible:false,
         agree:false,
         phone:null,
@@ -45,5 +35,9 @@
 
       }
     },
+    async mounted() {
+        const get_services = await this.$axios.get(`/api/get_services`)
+        this.services = get_services.data
+    }
   };
 </script>
