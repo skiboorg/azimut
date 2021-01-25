@@ -14,11 +14,11 @@
         <p class="mb-40">Специализируясь на пассажирских перевозках в одном из крупнейших городов России – Челябинске, Группа Компаний «Экспресс» зарекомендовала себя как надежный партнер, сотрудничать с которым выгодно и комфортно. Наша команда работает на благо жителей Челябинской области уже свыше 9 лет, что позволило стать примером качественного сервиса, как в сфере пассажирских перевозок, так и в сфере аренды автобусов различной вместимости.</p>
         <div class="services">
           <div @click="$router.push(`/services/${service.name_slug}`)"  class="services-item" v-for="service in services" :key="service.id">
-            <img :src="service.image" alt="">
+            <img rel="preload" :src="service.image" alt="">
             <p>{{service.name}}</p>
           </div>
         </div>
-        <div class="text-center"><el-button type="primary">Заказать авто</el-button></div>
+        <div @click="openModal" class="text-center"><el-button type="primary">Заказать авто</el-button></div>
       </div>
 
     </section>
@@ -40,12 +40,18 @@
       return {err}
     }
   },
-    data:function(){
+    data(){
       return{
 
 
       }
     },
+    methods:{
+       openModal(){
+      document.getElementById('callbackModal').click()
+
+    }
+    }
   }
 </script>
 
