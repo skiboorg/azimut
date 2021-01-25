@@ -4,7 +4,7 @@
      <div class="footer-wrapper">
        <div class="footer-row">
 
-           <img src="http://placehold.it/300" alt="">
+           <img src="/logo.svg" alt="">
 
          <p>Челябинск,<br>ул. Косарева, д. 75</p>
          <p>с 9:00 до 22:00</p>
@@ -15,20 +15,19 @@
        </div>
        <div class="footer-row">
          <ul>
-           <li><nuxt-link to="/1">О нас</nuxt-link></li>
-           <li><nuxt-link to="/1">Услуги</nuxt-link></li>
-           <li><nuxt-link to="/1">Автопарк</nuxt-link></li>
-           <li><nuxt-link to="/1">Аутсортсинг</nuxt-link></li>
-           <li><nuxt-link to="/1">Условия оплаты</nuxt-link></li>
-           <li><nuxt-link to="/1">Отзывы</nuxt-link></li>
-           <li><nuxt-link to="/1">Контакты</nuxt-link></li>
+           <li><nuxt-link to="/about">О нас</nuxt-link></li>
+           <li><nuxt-link to="/services">Услуги</nuxt-link></li>
+           <li><nuxt-link to="/cars">Автопарк</nuxt-link></li>
+           <li><nuxt-link to="/outsourcing-outstaffing">Аутсортсинг</nuxt-link></li>
+           <li><nuxt-link to="/faq">Условия оплаты</nuxt-link></li>
+<!--           <li><nuxt-link to="/1">Отзывы</nuxt-link></li>-->
+           <li><nuxt-link to="/contact">Контакты</nuxt-link></li>
          </ul>
        </div>
        <div class="footer-row">
           <ul class="footer-row-colums">
-            <li><nuxt-link to="/1">Автобусы</nuxt-link></li>
-            <li><nuxt-link to="/1">Обслуживание спортивных мероприятий</nuxt-link></li>
-            <li><nuxt-link to="/1">Автобусы</nuxt-link></li>
+            <li><nuxt-link :to="`/services/${service.name_slug}`" v-for="service in services" :key="service.id">{{service.name}}</nuxt-link></li>
+
             <li><nuxt-link to="/1">Политика конфиденциальности</nuxt-link></li>
             <li><nuxt-link to="/1">Пользовательское соглашение</nuxt-link></li>
             <li><nuxt-link to="/1">Публичная оферта</nuxt-link></li>
@@ -54,6 +53,17 @@
 
 <script>
   export default {
+     async asyncData({$axios}){
+
+    try{
+      const get_services = await $axios.get(`/api/get_services`)
+      const services = get_services.data
+      return {services}//,banners
+    }catch (e) {
+      const err = 404
+      return {err}
+    }
+  },
   data() {
       return {
         dialogVisible:false,

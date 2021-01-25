@@ -15,7 +15,7 @@
         <div class="categories ">
           <div @click="$router.push(`/cars/${cat.name_slug}`)"  class="services-item" v-for="cat in categories" :key="cat.id">
             <img :src="cat.image" alt="">
-            <p>{{cat.name}}</p>
+            <p class="text-center">{{cat.name}}</p>
           </div>
         </div>
         <div class="text-center"><el-button type="primary">Заказать авто</el-button></div>
