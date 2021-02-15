@@ -10,7 +10,7 @@
          <p>с 9:00 до 22:00</p>
          <p><a href="tel:+73512251065">+7 (351) 225-10-65</a></p>
          <p><a href="tel:+7 (982) 363-03-03">+7 (982) 363-03-03</a></p>
-         <p><a href="mailto:avto@gcexpress.ru">avto@gcexpress.ru</a></p>
+         <p><a href="mailto:oooazimut74ken@mail.ru">oooazimut74ken@mail.ru</a></p>
          <el-button id="callbackModal" @click="dialogVisible=true" type="primary">Заказать звонок</el-button>
        </div>
        <div class="footer-row">

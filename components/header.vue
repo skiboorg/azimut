@@ -8,7 +8,7 @@
       <div class="header-top__items">
         <p>Челябинск, ул. Косарева, д. 75</p>
         <p>с 9:00 до 18:00</p>
-        <p><a href="mailto:avto@gcexpress.ru">avto@gcexpress.ru</a></p>
+        <p><a href="mailto:oooazimut74ken@mail.ru">oooazimut74ken@mail.ru</a></p>
       </div>
       <div class="header-top__button">
         <el-button @click="dialogCallBackVisible=true" type="primary">Заказать звонок</el-button>

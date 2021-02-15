@@ -25,7 +25,7 @@
             <div class="contact-map__item">
             <img src="/map2.png" alt="">
 
-              <p><a href="mailto:avto@gcexpress.ru">oooazimut74ken@mail.ru</a></p>
+              <p><a href="mailto:oooazimut74ken@mail.ru">oooazimut74ken@mail.ru</a></p>
             </div>
             <div class="contact-map__item">
              <img src="/map3.png" alt="">

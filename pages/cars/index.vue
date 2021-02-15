@@ -18,7 +18,7 @@
             <p class="text-center">{{cat.name}}</p>
           </div>
         </div>
-        <div class="text-center"><el-button type="primary">Заказать авто</el-button></div>
+<!--        <div class="text-center"><el-button type="primary">Заказать авто</el-button></div>-->
       </div>
 
     </section>
