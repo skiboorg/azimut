@@ -1,14 +1,29 @@
 .features
-  display: grid
-  grid-template-columns: repeat(auto-fill,minmax(300px, 1fr))
-  grid-gap: 60px
+  display: flex
+  justify-content: space-between
   margin-bottom: 150px
+  flex-wrap: wrap
   &-item
     display: flex
     align-items: flex-start
-    justify-content: flex-start
+    justify-content: center
+    flex-basis: 30%
+    margin-bottom: 60px
     img
       margin-right: 20px
+    &:nth-child(4)
+      flex-grow: 1
+      justify-content: flex-end
+      margin-right: 90px
+      margin-bottom: 0px
+      p
+        max-width: 282px
+    &:nth-child(5)
+      flex-grow: 1
+      justify-content: flex-start
+      margin-bottom: 0px
+      p
+        max-width: 280px
 
 @media (max-width: 890px)
   .features
@@ -18,3 +33,6 @@
 @media (max-width: 600px)
   .features
     margin-bottom: 40px
+    &-item
+      flex-basis: 100%
+      margin-bottom: 0px

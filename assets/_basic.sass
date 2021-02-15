@@ -68,7 +68,8 @@ section
 
 .el-checkbox__input.is-checked+.el-checkbox__label
   color: $primary-color
-
+.el-breadcrumb__inner a:hover, .el-breadcrumb__inner.is-link:hover
+  color: $primary-color
 .el-collapse
   border-bottom: none
   border-top: none
@@ -79,6 +80,8 @@ section
   flex-basis: 49%
   &-item
     padding: 15px
+    &__content
+      font-size: 16px
     &__arrow
       color: $primary-color
     &__header

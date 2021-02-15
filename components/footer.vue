@@ -15,11 +15,12 @@
        </div>
        <div class="footer-row">
          <ul>
+           <li><a href="/sitemap.xml" target="_blank">Карта сайта</a></li>
            <li><nuxt-link to="/about">О нас</nuxt-link></li>
            <li><nuxt-link to="/services">Услуги</nuxt-link></li>
            <li><nuxt-link to="/cars">Автопарк</nuxt-link></li>
            <li><nuxt-link to="/outsourcing-outstaffing">Аутсортсинг</nuxt-link></li>
-           <li><nuxt-link to="/faq">Условия оплаты</nuxt-link></li>
+           <li><nuxt-link to="/prices">Цены и оплата</nuxt-link></li>
 <!--           <li><nuxt-link to="/1">Отзывы</nuxt-link></li>-->
            <li><nuxt-link to="/contact">Контакты</nuxt-link></li>
          </ul>

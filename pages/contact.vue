@@ -9,7 +9,7 @@
       </div>
       <div class="container page-container">
         <h1 class="section-title">Контакты</h1>
-        <p class="text-center">Офис Группы Компаний «Экспресс»</p>
+        <p class="text-center">Офис компании Азимут</p>
         <div class="contact-map">
           <div class="contact-map__inner">
             <div class="contact-map__item">
@@ -25,7 +25,7 @@
             <div class="contact-map__item">
             <img src="/map2.png" alt="">
 
-              <p><a href="mailto:avto@gcexpress.ru">avto@gcexpress.ru</a></p>
+              <p><a href="mailto:avto@gcexpress.ru">oooazimut74ken@mail.ru</a></p>
             </div>
             <div class="contact-map__item">
              <img src="/map3.png" alt="">

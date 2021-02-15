@@ -1,3 +1,5 @@
+const axios = require('axios')
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
@@ -33,17 +35,29 @@ export default {
   // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
   buildModules: [
   ],
-
+    // Axios module configuration (https://go.nuxtjs.dev/config-axios)
+  axios: {
+    baseURL:'http://localhost:8000'
+  },
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    '@nuxtjs/sitemap'
   ],
-
-  // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-  axios: {
-    baseURL:'http://localhost:8000'
+  sitemap: {
+    defaults: {
+      changefreq: 'daily',
+      priority: 1,
+      lastmod: new Date()
+    },
+    routes: async () => {
+      const { data } = await axios.get(`http://localhost:8000/api/get_services`)
+      return data.map((service) => `/services/${service.name_slug}`)
+    }
   },
+
+
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
