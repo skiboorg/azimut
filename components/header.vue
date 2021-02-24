@@ -21,7 +21,7 @@
         <li class="header-nav__item"><nuxt-link to="/cars">Автопарк</nuxt-link></li>
         <li class="header-nav__item"><nuxt-link to="/outsourcing-outstaffing">Аутсорсинг и аутстаффинг водителей</nuxt-link></li>
         <li class="header-nav__item"><nuxt-link to="/prices">Цены и оплата</nuxt-link></li>
-        <li class="header-nav__item"><nuxt-link to="/contact">Политика конфиденциальности</nuxt-link></li>
+
         <li><div class="header-nav__phones">
           <p><a href="tel:+79823630303">+7 (982) 363-03-03</a></p>
           <p><a href="tel:+73512251065">+7 (351) 225-10-65</a></p>

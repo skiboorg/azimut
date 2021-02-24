@@ -239,7 +239,7 @@ import Form from '@/components/Form';
 
 
         customers:[
-          {id:1,img:'/chelyabremont.jpg'},
+          {id:1,img:'/cher.png'},
           {id:2,img:'/fortum.jpg'},
           {id:3,img:'/tsement.jpg'},
           {id:4,img:'/vetropark.jpg'},

@@ -29,7 +29,7 @@
           <ul class="footer-row-colums">
             <li><nuxt-link :to="`/services/${service.name_slug}`" v-for="service in services" :key="service.id">{{service.name}}</nuxt-link></li>
 
-            <li><nuxt-link to="/1">Политика конфиденциальности</nuxt-link></li>
+            <li><nuxt-link to="/private-policy">Политика конфиденциальности</nuxt-link></li>
             <li><nuxt-link to="/1">Пользовательское соглашение</nuxt-link></li>
             <li><nuxt-link to="/1">Публичная оферта</nuxt-link></li>
 
