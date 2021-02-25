@@ -15,18 +15,18 @@
     display: none
   &-item
     cursor: pointer
+    &:hover
+        color: $primary-color
     img
       width: 280px
       height: 250px
-      object-fit: contain
+      object-fit: cover
       margin-bottom: 10px
     p
-      display: inline-block
       font-weight: 400
-      border-bottom:  1px dashed
+      font-size: 15px
       transition: all .2s linear
-      &:hover
-        color: $primary-color
+
 
 .service
   &-select

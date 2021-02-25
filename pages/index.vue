@@ -8,7 +8,7 @@
             <div class="banner-wrapper">
               <h3> {{banner.text}}</h3>
               <div class="">
-                <img :src="banner.img" alt="">
+                <img rel="prefetch" :src="banner.img" alt="">
               </div>
             </div>
           </swiper-slide>
@@ -135,7 +135,7 @@ import Form from '@/components/Form';
 
     try{
       //const get_banners = await $axios.get(`/api/get_streamers`)
-      const get_services = await $axios.get(`/api/get_services`)
+      const get_services = await $axios.get(`/api/get_index_services`)
       const get_cars = await $axios.get(`/api/get_index_cars`)
 
       //const banners = get_streamers.data
@@ -221,10 +221,9 @@ import Form from '@/components/Form';
           }
         },
         banners:[
-          {id:1,bg_color:'linear-gradient(90deg, #00BE91 0%, #00B091 100%)',text:'Аренда автомобилей. Аутсорсинг и аутстаффинг водителей',img:'/banner1.png'},
-          {id:2,bg_color:'linear-gradient(90deg, #f0BE91 0%, #20B091 100%)',text:'Аренда автомобилей. Аутсорсинг и аутстаффинг водителей',img:'/banner1.png'},
-          {id:3,bg_color:'linear-gradient(90deg, #40BE91 0%, #f0B091 100%)',text:'Аренда автомобилей. Аутсорсинг и аутстаффинг водителей',img:'/banner1.png'},
-          {id:4,bg_color:'linear-gradient(90deg, #70BE91 0%, #90B091 100%)',text:'Аренда автомобилей. Аутсорсинг и аутстаффинг водителей',img:'/banner1.png'}
+          {id:1,bg_color:'linear-gradient(90deg, #00BE91 0%, #00B091 100%)',text:'Аренда автомобилей Аутсорсинг и аутстаффинг водителей',img:'/baner1.jpg'},
+          {id:2,bg_color:'linear-gradient(90deg, #f0BE91 0%, #20B091 100%)',text:'Аренда автомобилей. Аутсорсинг и аутстаффинг водителей',img:'/banner2.png'},
+          {id:3,bg_color:'linear-gradient(90deg, #40BE91 0%, #f0B091 100%)',text:'Аренда автомобилей. Аутсорсинг и аутстаффинг водителей',img:'/banner1.png'}
         ],
         features:[
           {id:1,text:'В компании работают специалисты и водители \n' +
@@ -236,14 +235,11 @@ import Form from '@/components/Form';
               'на рынке более 8 лет',img:'/f4.png'},
           {id:5,text:'Персональный подход к каждому клиенту',img:'/f5.png'},
         ],
-
-
         customers:[
           {id:1,img:'/cher.png'},
           {id:2,img:'/fortum.jpg'},
           {id:3,img:'/tsement.jpg'},
           {id:4,img:'/vetropark.jpg'},
-
         ]
 
       }

@@ -11,8 +11,7 @@
 
       <div class="container page-container">
         <h1 class="section-title">Автопарк</h1>
-        <p class="mb-40">Легковые автомобили – описание транспорта и цена за час, км , информация о предоставлении авто от эконом до премиум класса, Микроавтобусы – описание транспорта и цена за час, км, информация о предоставлении авто от эконом до премиум класса.</p>
-        <div class="categories ">
+       <div class="categories ">
           <div @click="$router.push(`/cars/${cat.name_slug}`)"  class="services-item" v-for="cat in categories" :key="cat.id">
             <img :src="cat.image" alt="">
             <p class="text-center">{{cat.name}}</p>
