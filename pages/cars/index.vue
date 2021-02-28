@@ -13,7 +13,7 @@
         <h1 class="section-title">Автопарк</h1>
        <div class="categories ">
           <div @click="$router.push(`/cars/${cat.name_slug}`)"  class="services-item" v-for="cat in categories" :key="cat.id">
-            <img :src="cat.image" alt="">
+            <img style="object-fit: contain" :src="cat.image" alt="">
             <p class="text-center">{{cat.name}}</p>
           </div>
         </div>

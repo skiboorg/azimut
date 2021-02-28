@@ -9,10 +9,14 @@
       </div>
     <div class="container page-container">
       <h1 class="section-title">О компании</h1>
-      <img rel="preload" class="mb-40" src="/vodila.jpg" alt="">
-      <p>В компании работают специалисты и водители с большим опытом работы, автопарк оснащен современными моделями
+      <div class="page-wrapper mb-40">
+        <img rel="preload" src="/vodila.jpg" alt="">
+         <p>В компании Азимут работают специалисты и водители с большим опытом работы, автопарк оснащен современными моделями
         автомобилей от эконом до премиум класса, услуги оказываются в соответствии с требованиями безопасности, компания
         работает на рынке более 8 лет, персональный подход к каждому клиенту.</p>
+      </div>
+
+
       <el-collapse  v-for="q in faq" :key="q.id">
             <el-collapse-item :title="q.question" name="q.id">
               <div>{{q.answer}}</div>
